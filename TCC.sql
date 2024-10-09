@@ -1,39 +1,40 @@
 -- Verificar se o banco de dados já existe e excluí-lo
-IF EXISTS (SELECT * FROM SYS.databases WHERE name = 'TCC')
+use master if exists (SELECT * FROM SYS.databases WHERE name = 'TCC')
 DROP DATABASE TCC
 GO
--- Criar o banco de dados TCC
-CREATE DATABASE TCC
+-- Criação do banco de dados
+CREATE DATABASE TCC;
 GO
-
-USE TCC
--- Criar a tabela Cadastro
-CREATE TABLE Cadastro (
-    id BIGINT NOT NULL IDENTITY (1,1) PRIMARY KEY,
-    nome VARCHAR(45) NULL,
-    sexo CHAR(45) NULL, -- 'M' ou 'F'
-    dataNascimento DATE NULL, 
-    cpf VARCHAR(45) NULL,  -- 11 dígitos para o CPF
-    telefone VARCHAR(45) NULL,
-    email VARCHAR(45) NULL,
-    senha VARCHAR(45) NULL,
-)
+-- Uso do banco de dados recém-criado
+USE TCC;
+GO
+-- Criação da tabela Usuario
+CREATE TABLE Usuario (
+    Id BIGINT IDENTITY(1,1) PRIMARY KEY,
+    Nome NVARCHAR(255) NOT NULL,
+    Sexo NVARCHAR(10),
+    DataNascimento DATE,
+    Cpf NVARCHAR(11) NOT NULL,
+    Telefone NVARCHAR(15),
+    Email NVARCHAR(255) NOT NULL,
+    Senha NVARCHAR(255) NOT NULL
+);
+GO
 -- Inserir dados na tabela Cadastro
-INSERT INTO Cadastro (nome, sexo, dataNascimento, cpf, telefone, email, senha)
+INSERT INTO Usuario (nome, sexo, dataNascimento, cpf, telefone, email, senha)
 VALUES 
 ('João da Silva', 'M', '1990-01-01', '12345678901', '123456789', 'joao@example.com', 'senha123'),
 ('Maria Oliveira', 'F', '1985-05-15', '10987654321', '987654321', 'maria@example.com', 'senha456');
 USE TCC
-SELECT * FROM Cadastro
+SELECT * FROM Usuario
 
--- Atualizar o registro na tabela Cadastro
-	UPDATE Cadastro
+-- Atualizar o registro na tabela Usuario
+	UPDATE Usuario
 SET nome = 'Isabela'
 WHERE id = 1;
 
--- Selecionar todos os registros da tabela Cadastro
-SELECT * FROM Cadastro
-DROP TABLE Cadastro
+-- Selecionar todos os registros da tabela Usuario
+SELECT * FROM Usuario
 
 --deletar
-DELETE FROM Cadastro WHERE id = 1; -- Considerando que o id de João é 1
+DELETE FROM Usuario WHERE id = 1; -- Considerando que o id de João é 1
