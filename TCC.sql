@@ -1,14 +1,14 @@
--- Verificar se o banco de dados já existe e excluí-lo
+-- Verificar se o banco de dados j? existe e exclu?-lo
 use master if exists (SELECT * FROM SYS.databases WHERE name = 'TCC')
 DROP DATABASE TCC
 GO
--- Criação do banco de dados
+-- Cria??o do banco de dados
 CREATE DATABASE TCC;
 GO
--- Uso do banco de dados recém-criado
+-- Uso do banco de dados rec?m-criado
 USE TCC;
 GO
--- Criação da tabela Usuario
+-- Cria??o da tabela Usuario
 CREATE TABLE Usuario (
     Id BIGINT IDENTITY(1,1) PRIMARY KEY,
     Nome NVARCHAR(255) NOT NULL,
@@ -23,7 +23,7 @@ GO
 -- Inserir dados na tabela Cadastro
 INSERT INTO Usuario (nome, sexo, dataNascimento, cpf, telefone, email, senha)
 VALUES 
-('João da Silva', 'M', '1990-01-01', '12345678901', '123456789', 'joao@example.com', 'senha123'),
+('Jo?o da Silva', 'M', '1990-01-01', '12345678901', '123456789', 'joao@example.com', 'senha123'),
 ('Maria Oliveira', 'F', '1985-05-15', '10987654321', '987654321', 'maria@example.com', 'senha456');
 USE TCC
 SELECT * FROM Usuario
@@ -37,4 +37,4 @@ WHERE id = 1;
 SELECT * FROM Usuario
 
 --deletar
-DELETE FROM Usuario WHERE id = 1; -- Considerando que o id de João é 1
+DELETE FROM Usuario WHERE id = 1; -- Considerando que o id de Jo?o ? 1
